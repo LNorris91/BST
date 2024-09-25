@@ -29,7 +29,6 @@ export default class Tree {
 
     node.left = this.buildTree(array.slice(0, mid));
     node.right = this.buildTree(array.slice(mid + 1));
-    console.log(node);
     return node;
   }
 
@@ -88,16 +87,16 @@ export default class Tree {
   }
 
   find(value) {
-    this.search(this.root, value);
+    return this.search(this.root, value);
   }
 
   search(root, value) {
     if (root === null) return console.log('value not found');
 
-    if (root.data === value) return console.log(root);
+    if (root.data === value) return root;
 
-    if (value < root.data) this.search(root.left, value);
-    else if (value > root.data) this.search(root.right, value);
+    if (value < root.data) return this.search(root.left, value);
+    else if (value > root.data) return this.search(root.right, value);
   }
 
   printNode(root) {
@@ -157,5 +156,32 @@ export default class Tree {
     this.postOrderTraversal(callback, root.left);
     this.postOrderTraversal(callback, root.right);
     callback(root);
+  }
+
+  height(node) {
+    let target = this.find(node);
+    return this.findHeight(target);
+  }
+
+  findHeight(node) {
+    if (node === null) return 0;
+
+    const lDepth = this.findHeight(node.left);
+    const rDepth = this.findHeight(node.right);
+
+    return Math.max(lDepth, rDepth) + 1;
+  }
+
+  depth(node) {
+    let target = this.find(node);
+
+    return this.findDepth(target, this.root);
+  }
+
+  findDepth(node, root, count = 1) {
+    if (node.data === root.data) return count;
+
+    if (node.data < root.data) return this.findDepth(node, root.left, count + 1);
+    if (node.data > root.data) return this.findDepth(node, root.right, count + 1);
   }
 }
