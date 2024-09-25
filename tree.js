@@ -101,7 +101,7 @@ export default class Tree {
   }
 
   printNode(root) {
-    console.log(root.data);
+    console.log(root);
   }
 
   levelOrder(callback) {
@@ -115,5 +115,47 @@ export default class Tree {
       if (queue[0].right !== null) queue.push(queue[0].right);
       queue.shift();
     }
+  }
+
+  inOrder(callback) {
+    if (typeof callback !== 'function') throw new Error('Please enter a function');
+
+    return this.inOrderTraversal(callback, this.root);
+  }
+
+  inOrderTraversal(callback, root) {
+    if (root === null) return;
+
+    this.inOrderTraversal(callback, root.left);
+    callback(root);
+    this.inOrderTraversal(callback, root.right);
+  }
+
+  preOrder(callback) {
+    if (typeof callback !== 'function') throw new Error('Please enter a function');
+
+    return this.preOrderTraversal(callback, this.root);
+  }
+
+  preOrderTraversal(callback, root) {
+    if (root === null) return;
+
+    callback(root);
+    this.preOrderTraversal(callback, root.left);
+    this.preOrderTraversal(callback, root.right);
+  }
+
+  postOrder(callback) {
+    if (typeof callback !== 'function') throw new Error('Please enter a function');
+
+    return this.postOrderTraversal(callback, this.root);
+  }
+
+  postOrderTraversal(callback, root) {
+    if (root === null) return;
+
+    this.postOrderTraversal(callback, root.left);
+    this.postOrderTraversal(callback, root.right);
+    callback(root);
   }
 }
