@@ -99,4 +99,21 @@ export default class Tree {
     if (value < root.data) this.search(root.left, value);
     else if (value > root.data) this.search(root.right, value);
   }
+
+  printNode(root) {
+    console.log(root.data);
+  }
+
+  levelOrder(callback) {
+    if (typeof callback !== 'function') throw new Error('Please enter a function');
+
+    let queue = new Array(this.root);
+
+    while (queue.length > 0) {
+      callback(queue[0]);
+      if (queue[0].left !== null) queue.push(queue[0].left);
+      if (queue[0].right !== null) queue.push(queue[0].right);
+      queue.shift();
+    }
+  }
 }

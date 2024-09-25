@@ -22,3 +22,4 @@ maple.insert(7);
 maple.deleteItem(4);
 prettyPrint(maple.root);
 maple.find(7);
+maple.levelOrder(maple.printNode);
