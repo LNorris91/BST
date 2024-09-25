@@ -21,3 +21,4 @@ maple.insert(8);
 maple.insert(7);
 maple.deleteItem(4);
 prettyPrint(maple.root);
+maple.find(7);

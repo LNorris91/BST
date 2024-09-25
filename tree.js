@@ -86,4 +86,17 @@ export default class Tree {
     }
     return root;
   }
+
+  find(value) {
+    this.search(this.root, value);
+  }
+
+  search(root, value) {
+    if (root === null) return console.log('value not found');
+
+    if (root.data === value) return console.log(root);
+
+    if (value < root.data) this.search(root.left, value);
+    else if (value > root.data) this.search(root.right, value);
+  }
 }
