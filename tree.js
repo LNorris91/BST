@@ -100,6 +100,7 @@ export default class Tree {
   }
 
   printNode(root) {
+    return root.data;
     console.log(root);
   }
 
@@ -183,5 +184,45 @@ export default class Tree {
 
     if (node.data < root.data) return this.findDepth(node, root.left, count + 1);
     if (node.data > root.data) return this.findDepth(node, root.right, count + 1);
+  }
+
+  isBalanced() {
+    return this.checkBalanced(this.root);
+  }
+
+  checkBalanced(root) {
+    if (root === null) return true;
+
+    let left = this.findHeight(root.left);
+    let right = this.findHeight(root.right);
+
+    if (
+      Math.abs(left - right) <= 1 &&
+      this.checkBalanced(root.left) == true &&
+      this.checkBalanced(root.right) == true
+    ) {
+      return true;
+    }
+    return false;
+  }
+
+  rebalance() {
+    if (this.isBalanced()) return console.log('tree is already balanced');
+
+    let arr = [];
+    this.addToArray(arr, this.root);
+    this.root = this.buildTree(arr);
+
+    console.log(arr);
+  }
+
+  addToArray(array, root) {
+    if (root === null) return null;
+
+    this.addToArray(array, root.left);
+    array.push(root.data);
+    this.addToArray(array, root.right);
+
+    return array;
   }
 }

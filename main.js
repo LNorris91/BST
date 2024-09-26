@@ -17,9 +17,13 @@ function prettyPrint(node, prefix = '', isLeft = true) {
 
 maple.insert(33);
 maple.insert(9);
-maple.insert(8);
+maple.insert(32);
 maple.insert(7);
 maple.deleteItem(4);
 prettyPrint(maple.root);
-maple.postOrder(maple.printNode);
-console.log(maple.height(33));
+maple.inOrder(maple.printNode);
+// console.log(maple.depth(33));
+console.log(maple.isBalanced());
+maple.rebalance();
+prettyPrint(maple.root);
+console.log(maple.isBalanced());
