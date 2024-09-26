@@ -100,8 +100,8 @@ export default class Tree {
   }
 
   printNode(root) {
-    return root.data;
-    console.log(root);
+    console.log(root.data);
+    return root;
   }
 
   levelOrder(callback) {

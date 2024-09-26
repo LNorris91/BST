@@ -1,7 +1,6 @@
 import Tree from './tree.js';
-const newArray = [1, 4, 43, 12, 55, 78, 55, 10];
-const maple = new Tree(newArray);
 
+// Odin Project's code snippet for visualizing the node tree
 function prettyPrint(node, prefix = '', isLeft = true) {
   if (node === null) {
     return;
@@ -15,15 +14,18 @@ function prettyPrint(node, prefix = '', isLeft = true) {
   }
 }
 
-maple.insert(33);
-maple.insert(9);
-maple.insert(32);
-maple.insert(7);
-maple.deleteItem(4);
-prettyPrint(maple.root);
-maple.inOrder(maple.printNode);
-// console.log(maple.depth(33));
-console.log(maple.isBalanced());
-maple.rebalance();
-prettyPrint(maple.root);
-console.log(maple.isBalanced());
+// Returns an array of a random length <50 with random numbers <100
+function randomArray() {
+  let arr = [];
+  let arrLength = Math.floor(Math.random() * 50);
+
+  for (let i = 0; i < arrLength; i++) {
+    arr.push(Math.floor(Math.random() * 100));
+  }
+  return arr;
+}
+
+const testArray = [1, 4, 43, 12, 55, 78, 55, 10];
+const randomTree = new Tree(randomArray());
+
+prettyPrint(randomTree.root);
